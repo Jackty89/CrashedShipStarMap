@@ -1,4 +1,4 @@
-GameVersion = "3_70"
+GameVersion = "3_80"
 ModName = "CrashedShipStarMap"
 Author = "Jackty89"
 
@@ -165,6 +165,7 @@ NMS_MOD_DEFINITION_CONTAINER =
                             ["ADD"] = StarMapProduct
 						},
 						{
+							-- This reduces the cost of settlement maps to 1
 							["SPECIAL_KEY_WORDS"] = {"Id", "CHART_SETTLE"},
 							["VALUE_CHANGE_TABLE"] =
 							{
