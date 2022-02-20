@@ -1,6 +1,12 @@
-GameVersion = "3_80"
+GameVersion = "3_81"
 ModName = "CrashedShipStarMap"
 Author = "Jackty89"
+
+ProductTablePath = "METADATA\\REALITY\\TABLES\\NMS_REALITY_GCPRODUCTTABLE.MBIN"
+RewardTablePath = "METADATA\\REALITY\\TABLES\\REWARDTABLE.MBIN"
+ConsumeableItemTablePath = "METADATA\\REALITY\\TABLES\\CONSUMABLEITEMTABLE.MBIN"
+DefaultRealityPath = "METADATA\\REALITY\\DEFAULTREALITY.MBIN"
+
 
 StarMapCrashedShipId = "CHART_CRASHSHIP"
 
@@ -145,7 +151,7 @@ StarMapShopEntry = CreateMapShopEntry(StarMapCrashedShipId)
 
 
 
-NMS_MOD_DEFINITION_CONTAINER = 
+NMS_MOD_DEFINITION_CONTAINER =
 {
 	["MOD_FILENAME"] 			= ModName..GameVersion..".pak",
 	["MOD_DESCRIPTION"]			= ModName,
@@ -156,8 +162,8 @@ NMS_MOD_DEFINITION_CONTAINER =
 		{
 			["MBIN_CHANGE_TABLE"] 	=
 			{
-                { 
-					["MBIN_FILE_SOURCE"] 	= "METADATA\REALITY\TABLES\NMS_REALITY_GCPRODUCTTABLE.MBIN",
+                {
+					["MBIN_FILE_SOURCE"] 	= ProductTablePath,
 					["EXML_CHANGE_TABLE"] 	=
 					{
 						{
@@ -175,7 +181,7 @@ NMS_MOD_DEFINITION_CONTAINER =
                     }
 				},
 				{
-					["MBIN_FILE_SOURCE"] 	= "METADATA\REALITY\TABLES\REWARDTABLE.MBIN",
+					["MBIN_FILE_SOURCE"] 	= RewardTablePath,
 					["EXML_CHANGE_TABLE"] 	=
 					{
 						{
@@ -184,8 +190,8 @@ NMS_MOD_DEFINITION_CONTAINER =
 						}
                     }
 				},
-				{ 
-					["MBIN_FILE_SOURCE"] 	= "METADATA\REALITY\TABLES\CONSUMABLEITEMTABLE.MBIN",
+				{
+					["MBIN_FILE_SOURCE"] 	= ConsumeableItemTablePath,
 					["EXML_CHANGE_TABLE"] 	=
 					{
 						{
@@ -194,8 +200,8 @@ NMS_MOD_DEFINITION_CONTAINER =
 						}
                     }
 				},
-				{ 
-					["MBIN_FILE_SOURCE"] 	= "METADATA\REALITY\DEFAULTREALITY.MBIN",
+				{
+					["MBIN_FILE_SOURCE"] 	= DefaultRealityPath,
 					["EXML_CHANGE_TABLE"] 	=
 					{
 						{
@@ -213,7 +219,7 @@ NMS_MOD_DEFINITION_CONTAINER =
                             ["ADD"] = StarMapShopEntry
 						}
                     }
-				}				
+				}
             }
         }
     }
