@@ -1,5 +1,5 @@
-GameVersion = "3_81"
-ModName = "CrashedShipStarMap"
+GameVersion = "3_82"
+ModName = "MoreAndCheaperStarMaps"
 Author = "Jackty89"
 
 ProductTablePath = "METADATA\\REALITY\\TABLES\\NMS_REALITY_GCPRODUCTTABLE.MBIN"
@@ -7,14 +7,15 @@ RewardTablePath = "METADATA\\REALITY\\TABLES\\REWARDTABLE.MBIN"
 ConsumeableItemTablePath = "METADATA\\REALITY\\TABLES\\CONSUMABLEITEMTABLE.MBIN"
 DefaultRealityPath = "METADATA\\REALITY\\DEFAULTREALITY.MBIN"
 
-
 StarMapCrashedShipId = "CHART_CRASHSHIP"
+HiveMapId = "CHART_HIVE"
 
 function CreateStarMap(NewId)
-	return
-	[[
+	return [[
 		<Property value="GcProductData.xml">
-			<Property name="Id" value="]]..NewId..[[" />
+			<Property name="Id" value="]] ..
+		NewId ..
+			[[" />
 			<Property name="Name" value="UI_STARCHART_NAME" />
 			<Property name="NameLower" value="UI_STARCHART_NAME_L" />
 			<Property name="Subtitle" value="VariableSizeString.xml">
@@ -92,10 +93,11 @@ function CreateStarMap(NewId)
 end
 
 function CreateStarMapReward(NewId)
-	return
-	[[
+	return [[
 		<Property value="GcGenericRewardTableEntry.xml">
-			<Property name="Id" value="]]..NewId..[[" />
+			<Property name="Id" value="]] ..
+		NewId ..
+			[[" />
 			<Property name="List" value="GcRewardTableItemList.xml">
 				<Property name="RewardChoice" value="SelectAlwaysSilent" />
 				<Property name="OverrideZeroSeed" value="False" />
@@ -117,11 +119,14 @@ function CreateStarMapReward(NewId)
 end
 
 function CreateStarMapConsumable(NewId, NewRewardId)
-	return
-	[[
+	return [[
 		<Property value="GcConsumableItem.xml">
-			<Property name="ID" value="]]..NewId..[[" />
-			<Property name="RewardID" value="]]..NewRewardId..[[" />
+			<Property name="ID" value="]] ..
+		NewId ..
+			[[" />
+			<Property name="RewardID" value="]] ..
+				NewRewardId ..
+					[[" />
 			<Property name="TutorialRewardID" value="" />
 			<Property name="ButtonLocID" value="UI_CHART_LABEL" />
 			<Property name="ButtonSubLocID" value="UI_CHART_SUB" />
@@ -136,39 +141,37 @@ function CreateStarMapConsumable(NewId, NewRewardId)
 end
 
 function CreateMapShopEntry(NewId)
-	return
-	[[
+	return [[
 		<Property value="NMSString0x10.xml">
-			<Property name="Value" value="]]..NewId..[[" />
+			<Property name="Value" value="]] ..
+		NewId .. [[" />
 		</Property>
 	]]
 end
 
 StarMapProduct = CreateStarMap(StarMapCrashedShipId)
-StarMapReward = CreateStarMapReward("R_"..StarMapCrashedShipId)
-StarMapConsumable = CreateStarMapConsumable(StarMapCrashedShipId, "R_"..StarMapCrashedShipId)
+StarMapReward = CreateStarMapReward("R_" .. StarMapCrashedShipId)
+StarMapConsumable = CreateStarMapConsumable(StarMapCrashedShipId, "R_" .. StarMapCrashedShipId)
 StarMapShopEntry = CreateMapShopEntry(StarMapCrashedShipId)
-
-
+StarMapShopEntry2 = CreateMapShopEntry(HiveMapId)
 
 NMS_MOD_DEFINITION_CONTAINER =
 {
-	["MOD_FILENAME"] 			= ModName..GameVersion..".pak",
-	["MOD_DESCRIPTION"]			= ModName,
-	["MOD_AUTHOR"]				= Author,
-	["NMS_VERSION"]				= GameVersion,
-	["MODIFICATIONS"] 			=
+	["MOD_FILENAME"] = ModName .. GameVersion .. ".pak",
+	["MOD_DESCRIPTION"] = ModName,
+	["MOD_AUTHOR"] = Author,
+	["NMS_VERSION"] = GameVersion,
+	["MODIFICATIONS"] =
 	{
 		{
-			["MBIN_CHANGE_TABLE"] 	=
-			{
-                {
-					["MBIN_FILE_SOURCE"] 	= ProductTablePath,
-					["EXML_CHANGE_TABLE"] 	=
+			["MBIN_CHANGE_TABLE"] = {
+				{
+					["MBIN_FILE_SOURCE"] = ProductTablePath,
+					["EXML_CHANGE_TABLE"] =
 					{
 						{
 							["PRECEDING_KEY_WORDS"] = {"Table"},
-                            ["ADD"] = StarMapProduct
+							["ADD"] = StarMapProduct
 						},
 						{
 							-- This reduces the cost of settlement maps to 1
@@ -178,49 +181,48 @@ NMS_MOD_DEFINITION_CONTAINER =
 								{"RecipeCost", "1"}
 							}
 						}
-                    }
+					}
 				},
 				{
-					["MBIN_FILE_SOURCE"] 	= RewardTablePath,
-					["EXML_CHANGE_TABLE"] 	=
+					["MBIN_FILE_SOURCE"] = RewardTablePath,
+					["EXML_CHANGE_TABLE"] =
 					{
 						{
 							["PRECEDING_KEY_WORDS"] = {"SpecialRewardTable"},
-                            ["ADD"] = StarMapReward
+							["ADD"] = StarMapReward
 						}
-                    }
+					}
 				},
 				{
-					["MBIN_FILE_SOURCE"] 	= ConsumeableItemTablePath,
-					["EXML_CHANGE_TABLE"] 	=
+					["MBIN_FILE_SOURCE"] = ConsumeableItemTablePath,
+					["EXML_CHANGE_TABLE"] =
 					{
 						{
 							["PRECEDING_KEY_WORDS"] = {"Table"},
-                            ["ADD"] = StarMapConsumable
+							["ADD"] = StarMapConsumable
 						}
-                    }
+					}
 				},
 				{
-					["MBIN_FILE_SOURCE"] 	= DefaultRealityPath,
-					["EXML_CHANGE_TABLE"] 	=
-					{
+					["MBIN_FILE_SOURCE"] = DefaultRealityPath,
+					["EXML_CHANGE_TABLE"] = {
 						{
 							["PRECEDING_KEY_WORDS"] = {"TradeSettings", "MapShop"},
-                            ["VALUE_CHANGE_TABLE"] =
+							["VALUE_CHANGE_TABLE"] =
 							{
-								{"MinItemsForSale", "5"},
-								{"MaxItemsForSale", "5"}
+								{"MinItemsForSale", "7"},
+								{"MaxItemsForSale", "7"}
 							}
 						},
 						{
 							-- , "AlwaysPresentProducts"
 							["PRECEDING_KEY_WORDS"] = {"TradeSettings", "MapShop"},
 							["LINE_OFFSET"] = "+1",
-                            ["ADD"] = StarMapShopEntry
+							["ADD"] = StarMapShopEntry .. StarMapShopEntry2
 						}
-                    }
+					}
 				}
-            }
-        }
-    }
+			}
+		}
+	}
 }
